@@ -2,13 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
 import { booths, isActive, type Booth } from "@/booths";
+import { useVimNav } from "./useVimNav";
 
 interface BoothTreeProps {
   /** Called after a booth is picked, e.g. to close the mobile menu. */
   onNavigate?: () => void;
   /** Taller rows for touch. */
   roomy?: boolean;
+  /** Drive this tree with vim keys page-wide (see useVimNav). */
+  vimKeys?: boolean;
 }
 
 interface BranchProps {
@@ -44,17 +48,24 @@ const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
               <Link
                 href={booth.href}
                 data-nav-sound
+                data-booth-link
                 aria-current={active ? "page" : undefined}
                 onClick={onNavigate}
-                className={`flex w-fit items-center gap-1.5 rounded-sm outline-offset-2 transition-colors focus-visible:outline-2 focus-visible:outline-accent ${rowHeight} ${
+                className={`group flex w-fit items-center gap-1.5 rounded-sm transition-colors focus-visible:text-accent focus-visible:outline-none ${rowHeight} ${
                   active ? "text-bright" : "text-clay hover:text-accent"
                 }`}
               >
                 {booth.name}
-                {active && (
+                {active ? (
                   <span
                     aria-hidden
                     className="inline-block h-[1.05em] w-[0.55em] bg-accent cursor-blink"
+                  />
+                ) : (
+                  // Hollow cursor: the keyboard selection (j/k or Tab).
+                  <span
+                    aria-hidden
+                    className="hidden h-[1.05em] w-[0.55em] border border-accent group-focus-visible:inline-block"
                   />
                 )}
               </Link>
@@ -74,11 +85,18 @@ const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
   );
 };
 
-export const BoothTree = ({ onNavigate, roomy = false }: BoothTreeProps) => {
+export const BoothTree = ({
+  onNavigate,
+  roomy = false,
+  vimKeys = false,
+}: BoothTreeProps) => {
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+  useVimNav(navRef, vimKeys);
 
   return (
     <nav
+      ref={navRef}
       aria-label="Booths"
       className={`font-mono ${roomy ? "text-[15px]" : "text-[13px]"}`}
     >
