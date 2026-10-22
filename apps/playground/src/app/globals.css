@@ -126,7 +126,34 @@ button:not(:disabled),
   }
 }
 
+/* ⌘K palette: a short rise, same idea as the booths menu. */
+.palette-dialog {
+  opacity: 0;
+  transform: translateY(6px) scale(0.99);
+  transition:
+    opacity 140ms ease-out,
+    transform 140ms ease-out,
+    overlay 140ms allow-discrete,
+    display 140ms allow-discrete;
+}
+
+.palette-dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .palette-dialog[open] {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .palette-dialog {
+    transition: none;
+  }
+
   .booths-dialog {
     transition: none;
   }

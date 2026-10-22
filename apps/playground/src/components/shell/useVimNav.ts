@@ -42,8 +42,13 @@ export const useVimNav = (
       if (isTyping(event.target)) return;
 
       const nav = navRef.current;
-      // offsetParent is null while the tree is hidden (sidebar below lg).
+      // offsetParent is null while the tree is hidden (sidebar below lg, or
+      // the booths dialog while closed).
       if (!nav || nav.offsetParent === null) return;
+      // A modal on top (⌘K palette, booths menu) owns the keys, unless this
+      // tree is inside it.
+      const modal = document.querySelector("dialog[open]");
+      if (modal && !modal.contains(nav)) return;
 
       const links = [
         ...nav.querySelectorAll<HTMLAnchorElement>("a[data-booth-link]"),

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { AccentPicker } from "@/components/AccentPicker";
+import { CommandPalette } from "@/components/shell/CommandPalette";
 import { MobileBar } from "@/components/shell/MobileBar";
 import { Providers } from "@/components/shell/Providers";
 import { Sidebar } from "@/components/shell/Sidebar";
+import { paletteLinks } from "@/lib/palette";
 import { UI_STORAGE_KEY } from "@/stores/ui";
 import { display, mono, sans } from "./fonts";
 import "./globals.css";
@@ -45,6 +47,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             </div>
           </div>
           <AccentPicker />
+          <CommandPalette links={paletteLinks()} />
         </Providers>
       </body>
     </html>

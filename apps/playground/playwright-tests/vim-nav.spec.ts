@@ -4,7 +4,7 @@ import { expect, test, type Page } from "@playwright/test";
 // it's listening.
 const gotoReady = async (page: Page, path: string) => {
   await page.goto(path);
-  await expect(page.locator('nav[data-vim-keys="on"]')).toBeAttached();
+  await expect(page.locator('nav[data-vim-keys="on"]').first()).toBeAttached();
 };
 
 test.describe("vim keys on the booth tree", () => {
@@ -77,4 +77,18 @@ test("j does nothing while the sidebar is hidden on mobile", async ({
   expect(await page.evaluate(() => document.activeElement?.tagName)).toBe(
     "BODY",
   );
+});
+
+test("vim keys drive the booths menu on mobile", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile only");
+  await gotoReady(page, "/");
+  await page.getByRole("button", { name: "booths" }).click();
+  const menu = page.getByRole("dialog", { name: "Booths" });
+  await expect(menu).toBeVisible();
+
+  await page.keyboard.press("j");
+  await expect(menu.getByRole("link", { name: "now" })).toBeFocused();
+  await page.keyboard.press("l");
+  await expect(page).toHaveURL("/now");
+  await expect(menu).toBeHidden();
 });

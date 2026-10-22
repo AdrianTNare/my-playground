@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BoothTree } from "./BoothTree";
+import { PaletteHint } from "./PaletteHint";
 import { SoundToggle } from "./SoundToggle";
 
 export const Sidebar = () => {
@@ -25,6 +26,7 @@ export const Sidebar = () => {
           <kbd className="text-muted">k</kbd> to move,{" "}
           <kbd className="text-muted">enter</kbd> to open
         </p>
+        <PaletteHint />
       </div>
     </aside>
   );

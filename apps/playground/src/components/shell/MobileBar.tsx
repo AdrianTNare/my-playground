@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { BoothTree } from "./BoothTree";
+import { openPalette } from "./CommandPalette";
 import { SoundToggle } from "./SoundToggle";
 
 const promptPath = (pathname: string) =>
@@ -28,15 +29,27 @@ export const MobileBar = () => {
             <span className="text-accent">{promptPath(pathname)}</span>
             <span className="text-muted"> $</span>
           </Link>
-          <button
-            type="button"
-            onClick={open}
-            data-nav-sound
-            aria-haspopup="dialog"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md border border-[#4a3f37] px-3.5 font-mono text-[13px] font-medium text-bright transition-colors hover:border-accent hover:text-accent"
-          >
-            <span aria-hidden>☰</span> booths
-          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={openPalette}
+              data-nav-sound
+              aria-haspopup="dialog"
+              aria-label="Find a booth"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-[#4a3f37] px-3 font-mono text-[13px] font-medium text-bright transition-colors hover:border-accent hover:text-accent"
+            >
+              <span aria-hidden>/</span>
+            </button>
+            <button
+              type="button"
+              onClick={open}
+              data-nav-sound
+              aria-haspopup="dialog"
+              className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#4a3f37] px-3.5 font-mono text-[13px] font-medium text-bright transition-colors hover:border-accent hover:text-accent"
+            >
+              <span aria-hidden>☰</span> booths
+            </button>
+          </div>
         </div>
       </header>
 
@@ -61,7 +74,7 @@ export const MobileBar = () => {
             </button>
           </div>
           <div className="mt-6 flex-1 overflow-y-auto">
-            <BoothTree roomy onNavigate={close} />
+            <BoothTree roomy vimKeys onNavigate={close} />
           </div>
           <div className="border-t border-[#2a221d] py-4">
             <SoundToggle />
