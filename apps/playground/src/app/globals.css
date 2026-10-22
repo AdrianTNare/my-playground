@@ -149,7 +149,45 @@ button:not(:disabled),
   }
 }
 
+/* Booth-to-booth navigation: the old booth fades out fast, the new one
+   rises in. The rest of the page swaps without a crossfade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(.booth-swap) {
+  animation-duration: 0s;
+}
+
+::view-transition-old(.booth-swap) {
+  animation: 110ms ease-out both booth-out;
+}
+
+::view-transition-new(.booth-swap) {
+  animation: 240ms cubic-bezier(0.2, 0.8, 0.2, 1) 70ms both booth-in;
+}
+
+@keyframes booth-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes booth-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
   .palette-dialog {
     transition: none;
   }

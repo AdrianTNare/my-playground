@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import { AccentPicker } from "@/components/AccentPicker";
 import { CommandPalette } from "@/components/shell/CommandPalette";
 import { MobileBar } from "@/components/shell/MobileBar";
@@ -10,8 +10,15 @@ import { UI_STORAGE_KEY } from "@/stores/ui";
 import { display, mono, sans } from "./fonts";
 import "./globals.css";
 
+// Netlify sets URL to the site's main address at build time.
+const SITE_URL =
+  process.env.SITE_URL ?? process.env.URL ?? "https://adriannare.netlify.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: { default: "Adrian Nare", template: "%s — Adrian Nare" },
+  openGraph: { siteName: "Adrian Nare", type: "website" },
+  twitter: { card: "summary_large_image" },
   description:
     "Adrian Nare — full-stack engineer. A playground of booths: now, media reactions, reads, writing, projects and tinkering.",
 };
@@ -43,7 +50,11 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             <Sidebar />
             <div className="min-w-0 flex-1">
               <MobileBar />
-              {children}
+              {/* The one motion between booths: the content panel swaps
+                  (see .booth-swap in globals.css); the shell stays put. */}
+              <ViewTransition update="booth-swap" default="none">
+                <div>{children}</div>
+              </ViewTransition>
             </div>
           </div>
           <AccentPicker />
