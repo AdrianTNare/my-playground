@@ -1,23 +1,21 @@
-import {
-  Hanken_Grotesk,
-  JetBrains_Mono,
-  Space_Grotesk,
-} from "next/font/google";
+import localFont from "next/font/local";
 
-export const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+// Variable latin subsets (SIL OFL) from Fontsource, committed so builds
+// never download fonts. Each file covers every weight the site uses.
+export const mono = localFont({
+  src: "./fonts/jetbrains-mono.woff2",
+  weight: "100 800",
   variable: "--font-jetbrains-mono",
 });
 
-export const display = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+export const display = localFont({
+  src: "./fonts/space-grotesk.woff2",
+  weight: "300 700",
   variable: "--font-space-grotesk",
 });
 
-export const sans = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+export const sans = localFont({
+  src: "./fonts/hanken-grotesk.woff2",
+  weight: "100 900",
   variable: "--font-hanken-grotesk",
 });
