@@ -1,0 +1,96 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { booths, isActive, type Booth } from "@/booths";
+
+interface BoothTreeProps {
+  /** Called after a booth is picked, e.g. to close the mobile menu. */
+  onNavigate?: () => void;
+  /** Taller rows for touch. */
+  roomy?: boolean;
+}
+
+interface BranchProps {
+  items: Booth[];
+  pathname: string;
+  roomy: boolean;
+  onNavigate?: () => void;
+}
+
+// `tree`-style connectors drawn with borders rather than box-drawing glyphs,
+// so the vertical rule stays joined at any row height. Every item gets a
+// trunk segment (::before) and an elbow (::after); the last item's trunk
+// stops at the elbow.
+const itemConnectors =
+  "relative pl-[22px] before:absolute before:top-0 before:left-[3px] before:h-full before:border-l before:border-[#4a3f37] last:before:h-[var(--elbow)] after:absolute after:top-[var(--elbow)] after:left-[3px] after:w-[13px] after:border-t after:border-[#4a3f37]";
+
+const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
+  const rowHeight = roomy ? "min-h-11" : "min-h-7";
+
+  return (
+    <ul className={roomy ? "[--elbow:22px]" : "[--elbow:14px]"}>
+      {items.map((booth) => {
+        const children = booth.children ?? [];
+        const active = children.length === 0 && isActive(pathname, booth.href);
+
+        return (
+          <li key={booth.name} className={itemConnectors}>
+            {children.length > 0 ? (
+              <span className={`flex items-center text-muted ${rowHeight}`}>
+                {booth.name}/
+              </span>
+            ) : (
+              <Link
+                href={booth.href}
+                data-nav-sound
+                aria-current={active ? "page" : undefined}
+                onClick={onNavigate}
+                className={`flex w-fit items-center gap-1.5 rounded-sm outline-offset-2 transition-colors focus-visible:outline-2 focus-visible:outline-accent ${rowHeight} ${
+                  active ? "text-bright" : "text-clay hover:text-accent"
+                }`}
+              >
+                {booth.name}
+                {active && (
+                  <span
+                    aria-hidden
+                    className="inline-block h-[1.05em] w-[0.55em] bg-accent cursor-blink"
+                  />
+                )}
+              </Link>
+            )}
+            {children.length > 0 && (
+              <Branch
+                items={children}
+                pathname={pathname}
+                roomy={roomy}
+                onNavigate={onNavigate}
+              />
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export const BoothTree = ({ onNavigate, roomy = false }: BoothTreeProps) => {
+  const pathname = usePathname();
+
+  return (
+    <nav
+      aria-label="Booths"
+      className={`font-mono ${roomy ? "text-[15px]" : "text-[13px]"}`}
+    >
+      <div aria-hidden className="leading-none text-muted">
+        .
+      </div>
+      <Branch
+        items={booths}
+        pathname={pathname}
+        roomy={roomy}
+        onNavigate={onNavigate}
+      />
+    </nav>
+  );
+};
