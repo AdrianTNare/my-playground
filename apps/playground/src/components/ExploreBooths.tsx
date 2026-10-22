@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { booths } from "@/booths";
+import { PlaygroundShell } from "./PlaygroundShell";
 
 const listed = booths.filter((booth) => booth.href !== "/");
 
@@ -48,6 +49,7 @@ export const ExploreBooths = () => {
               </li>
             ))}
           </ul>
+          <PlaygroundShell />
         </div>
       </div>
     </section>
