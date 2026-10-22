@@ -1,7 +1,29 @@
+# dependencies
 node_modules
+.pnpm-store
+
+# builds
 .next
 out
 dist
-*.local
+build
+*.tsbuildinfo
+next-env.d.ts
+
+# env
+.env*
+!.env.example
+
+# tests
+playwright-report
+test-results
+.playwright-mcp
+
+# local
 .DS_Store
-.env*.local
+*.local
+.claude/
+.vercel
+.eslintcache
+*.db
+*.db-journal

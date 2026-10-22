@@ -1,0 +1,18 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Refuse versions published in the last 24h. Account-compromise attacks on
+# npm are usually caught within hours, so a one-day quarantine blocks that
+# whole class. Only affects resolution; `--frozen-lockfile` installs are
+# unaffected. Add a package to minimumReleaseAgeExclude rather than lowering
+# this when a just-published version is genuinely needed.
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude: []
+
+allowBuilds:
+  "@swc/core": true
+  better-sqlite3: true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
