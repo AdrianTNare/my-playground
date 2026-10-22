@@ -1,12 +1,18 @@
-import { stack } from '../data'
+import { stack } from "@/data";
 
-export default function Stack() {
+export const Stack = () => {
   return (
-    <section id="stack" className="scroll-mt-20 border-t border-[#2a221d] py-[clamp(34px,5vw,56px)]">
+    <section
+      id="stack"
+      className="scroll-mt-20 border-t border-[#2a221d] py-[clamp(34px,5vw,56px)]"
+    >
       <div className="font-mono text-[13px] text-amber">$ cat stack.txt</div>
       <div className="mt-6 grid gap-3.5 [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))]">
         {stack.map((s) => (
-          <div key={s.k} className="rounded-[10px] border border-edge bg-panel px-[22px] py-5">
+          <div
+            key={s.k}
+            className="rounded-[10px] border border-edge bg-panel px-[22px] py-5"
+          >
             <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               {s.k}
             </div>
@@ -19,5 +25,5 @@ export default function Stack() {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
