@@ -5,6 +5,8 @@ import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
 import { getProject, getProjects } from "@/lib/content";
+import { formatDay } from "@/lib/dates";
+import { getRepoStats } from "@/lib/github";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -25,6 +27,8 @@ export const generateMetadata = async ({
 const ProjectPage = async ({ params }: ProjectPageProps) => {
   const project = await getProject((await params).slug);
   if (!project) notFound();
+  const source = project.links.find((link) => link.kind === "source");
+  const stats = source ? await getRepoStats(source.href) : null;
 
   return (
     <BoothPage>
@@ -58,6 +62,19 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
           ))}
         </div>
       </div>
+
+      {stats && (
+        <p className="mt-5 font-mono text-[12px] text-muted">
+          <span className="text-amber">$ stat</span>{" "}
+          {[
+            stats.language,
+            `★ ${stats.stars}`,
+            `last push ${formatDay(stats.pushed)}`,
+          ]
+            .filter(Boolean)
+            .join("  ·  ")}
+        </p>
+      )}
 
       {project.preview && (
         <figure className="mt-10 overflow-hidden rounded-xl border border-edge bg-panel">
