@@ -1,6 +1,7 @@
 "use client";
 
 import type { BlogPost } from "@playground/contracts";
+import Image from "next/image";
 import { useState } from "react";
 
 interface BlogListProps {
@@ -83,34 +84,49 @@ export const BlogList = ({ posts, tags }: BlogListProps) => {
             >
               {formatDate(post.date)}
             </time>
-            <div className="min-w-0">
-              <h2 className="font-mono text-[17px] font-semibold text-bright">
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener"
-                  data-nav-sound
-                  className="rounded-sm transition-colors outline-offset-2 hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  {post.title} <span className="text-[13px] text-amber">↗</span>
-                </a>
-              </h2>
-              <p className="mt-2 max-w-[68ch] font-mono text-[14px] leading-[1.65] text-clay">
-                {post.brief}
-              </p>
-              <div className="mt-3 flex flex-wrap items-center gap-[7px]">
-                <span className="mr-1 font-mono text-[12px] text-muted">
-                  {post.readTimeMinutes} min read
-                </span>
-                {post.tags.map((t) => (
-                  <TagButton
-                    key={t}
-                    label={t}
-                    pressed={tag === t}
-                    onSelect={() => toggle(t)}
-                  />
-                ))}
+            <div className="flex min-w-0 flex-col-reverse gap-4 sm:flex-row sm:gap-6">
+              <div className="min-w-0 flex-1">
+                <h2 className="font-mono text-[17px] font-semibold text-bright">
+                  <a
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener"
+                    data-nav-sound
+                    className="rounded-sm transition-colors outline-offset-2 hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+                  >
+                    {post.title}{" "}
+                    <span className="text-[13px] text-amber">↗</span>
+                  </a>
+                </h2>
+                <p className="mt-2 max-w-[68ch] font-mono text-[14px] leading-[1.65] text-clay">
+                  {post.brief}
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-[7px]">
+                  <span className="mr-1 font-mono text-[12px] text-muted">
+                    {post.readTimeMinutes} min read
+                  </span>
+                  {post.tags.map((t) => (
+                    <TagButton
+                      key={t}
+                      label={t}
+                      pressed={tag === t}
+                      onSelect={() => toggle(t)}
+                    />
+                  ))}
+                </div>
               </div>
+              {post.coverImage && (
+                // Decorative: the title next to it already names the post.
+                <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden rounded-md border border-[#3a302a] sm:w-[168px]">
+                  <Image
+                    src={post.coverImage}
+                    alt=""
+                    fill
+                    sizes="(min-width: 640px) 168px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
             </div>
           </li>
         ))}

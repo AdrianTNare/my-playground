@@ -8,6 +8,8 @@ export const BlogPostSchema = z.object({
   url: z.url(),
   /** ISO date, e.g. "2025-02-27". */
   date: z.iso.date(),
+  /** Cover image URL; absent when the post has none. */
+  coverImage: z.url().optional(),
   /** Estimated from the post's word count; the feed has no read time. */
   readTimeMinutes: z.number().int().positive(),
   tags: z.array(z.string().min(1)).default([]),
