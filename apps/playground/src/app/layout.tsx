@@ -5,6 +5,7 @@ import { CommandPalette } from "@/components/shell/CommandPalette";
 import { MobileBar } from "@/components/shell/MobileBar";
 import { Providers } from "@/components/shell/Providers";
 import { Sidebar } from "@/components/shell/Sidebar";
+import { boothCounts } from "@/lib/counts";
 import { paletteLinks } from "@/lib/palette";
 import { UI_STORAGE_KEY } from "@/stores/ui";
 import { display, mono, sans } from "./fonts";
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
   title: { default: "Adrian Nare", template: "%s — Adrian Nare" },
   openGraph: { siteName: "Adrian Nare", type: "website" },
   twitter: { card: "summary_large_image" },
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/feed.xml", title: "Adrian Nare" }],
+    },
+  },
   description:
     "Adrian Nare — full-stack engineer. A playground of booths: now, media reactions, reads, writing, projects and tinkering.",
 };
@@ -34,7 +40,7 @@ interface RootLayoutProps {
 }
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
-  const links = await paletteLinks();
+  const [links, counts] = await Promise.all([paletteLinks(), boothCounts()]);
 
   return (
     <html
@@ -49,9 +55,9 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
       <body>
         <Providers>
           <div className="flex min-h-screen bg-ink">
-            <Sidebar />
+            <Sidebar counts={counts} />
             <div className="min-w-0 flex-1">
-              <MobileBar />
+              <MobileBar counts={counts} />
               {/* The one motion between booths: the content panel swaps
                   (see .booth-swap in globals.css); the shell stays put. */}
               <ViewTransition update="booth-swap" default="none">
