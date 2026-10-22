@@ -1,0 +1,46 @@
+{
+  "name": "@playground/cms",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3030",
+    "build": "next build",
+    "start": "next start -p 3030",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "migrate": "payload migrate",
+    "migrate:create": "payload migrate:create",
+    "seed": "payload run src/seed/index.ts"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": "eslint --cache --fix",
+    "src/**/*.{js,ts,tsx,css,scss,md}": "prettier --write"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.91.0",
+    "@payloadcms/next": "^3.91.0",
+    "@payloadcms/richtext-lexical": "^3.91.0",
+    "@payloadcms/ui": "^3.91.0",
+    "@playground/content": "workspace:*",
+    "@playground/contracts": "workspace:*",
+    "graphql": "^16.14.2",
+    "next": "16.4.2",
+    "payload": "^3.91.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.4.2",
+    "prettier": "^3.9.10",
+    "sass": "^1.106.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
-import { findProject, projects } from "@/content/projects";
+import { findProject, projects } from "@playground/content";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;

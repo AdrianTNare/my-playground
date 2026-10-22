@@ -51,6 +51,15 @@ jobs:
         run: pnpm build
         env:
           SKIP_ENV_VALIDATION: "true"
+          PAYLOAD_SECRET: ci-only-not-a-secret
+
+      # Proves the migrations apply to an empty database and the seed loads.
+      - name: CMS migrate and seed
+        working-directory: apps/cms
+        run: pnpm migrate && pnpm seed
+        env:
+          PAYLOAD_SECRET: ci-only-not-a-secret
+          DATABASE_URL: file:./ci.db
 
   e2e:
     runs-on: ubuntu-latest

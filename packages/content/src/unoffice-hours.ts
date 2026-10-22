@@ -1,7 +1,8 @@
 import { UnofficeHoursSchema } from "@playground/contracts";
 
 export const unofficeHours = UnofficeHoursSchema.parse({
-  bookingUrl: null,
+  // Email until a booking page exists; swap in the cal.com link then.
+  bookingUrl: "mailto:adriantnare@icloud.com?subject=Unoffice%20hours",
   durationMinutes: 30,
   timezone: "SAST (UTC+2)",
   intro: [

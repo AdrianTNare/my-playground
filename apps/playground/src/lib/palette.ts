@@ -1,5 +1,5 @@
 import { leafBooths } from "@/booths";
-import { projects } from "@/content/projects";
+import { projects } from "@playground/content";
 
 /** Somewhere the ⌘K palette can take you. Commands are added client-side. */
 export interface PaletteLink {

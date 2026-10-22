@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
-import { nowPage } from "@/content/now";
+import { nowPage } from "@playground/content";
 
 export const metadata: Metadata = {
   title: "Now",
