@@ -1,0 +1,10 @@
+# Netlify site for the CMS (base directory: apps/cms). Netlify installs from
+# the repo root (pnpm workspace) and builds this app with its Next.js runtime.
+[build]
+  # Migrations run against the production database before every build, so
+  # schema changes ship with the code that needs them.
+  command = "pnpm migrate && pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
