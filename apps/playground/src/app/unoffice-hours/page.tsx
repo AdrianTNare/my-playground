@@ -4,7 +4,7 @@ import { BoothPage } from "@/components/booth/BoothPage";
 import { unofficeHours } from "@/content/unoffice-hours";
 
 export const metadata: Metadata = {
-  title: "unoffice hours",
+  title: "Unoffice hours",
   description:
     "Book a 30-minute call with Adrian Nare to talk shop, or nothing in particular.",
 };
