@@ -108,6 +108,13 @@ export const useVimNav = (
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    // Marks the tree as listening, so tests (and anything else) can wait
+    // for hydration instead of racing it.
+    const nav = navRef.current;
+    nav?.setAttribute("data-vim-keys", "on");
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      nav?.removeAttribute("data-vim-keys");
+    };
   }, [navRef, enabled]);
 };
