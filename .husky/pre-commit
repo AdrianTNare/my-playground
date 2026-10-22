@@ -1,5 +1,5 @@
 # Each app has its own lint-staged config, scoped to its own files.
-for app in apps/playground apps/cms; do
+for app in apps/playground apps/cms apps/api; do
   (cd "$app" && npx lint-staged) || exit 1
 done
 
