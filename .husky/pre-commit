@@ -1,0 +1,7 @@
+cd apps/playground
+npx lint-staged
+
+# tsc needs the whole program, so typecheck runs workspace-wide rather than
+# as a per-file lint-staged entry.
+cd ../..
+pnpm typecheck
