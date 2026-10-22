@@ -29,9 +29,9 @@ export const Hero = () => {
               <span className="ml-2 inline-block h-[clamp(34px,7vw,62px)] w-[clamp(12px,2.2vw,20px)] align-[-0.12em] bg-accent cursor-blink"></span>
             </h1>
             <p className="mt-[22px] max-w-[560px] font-mono text-[clamp(13px,2vw,15px)] leading-[1.75] text-clay">
-              Full-stack JavaScript / TypeScript developer · Vim keybindings
-              enthusiast · Computer Science graduate. I build stable,
-              performant, well-tested frontend applications.
+              Full-stack engineer working across TypeScript, Node and&nbsp;.NET.
+              I build the interface, the services behind it, and the tests and
+              monitoring that keep both honest. Vim keybindings, always.
             </p>
             <div className="mt-[30px] flex flex-wrap gap-3">
               <a
