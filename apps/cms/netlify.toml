@@ -8,3 +8,11 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+# Deploy previews share the production database, so they build without
+# migrating; only main (production) applies migrations.
+[context.deploy-preview]
+  command = "pnpm build"
+
+[context.branch-deploy]
+  command = "pnpm build"
