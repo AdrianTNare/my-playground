@@ -1,0 +1,11 @@
+# Netlify site for the API (base directory: apps/api).
+[build]
+  command = "pnpm typecheck"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
