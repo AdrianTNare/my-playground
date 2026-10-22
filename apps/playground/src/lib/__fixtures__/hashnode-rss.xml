@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Terminal_Knight's Cut]]></title><description><![CDATA[Terminal_Knight's Cut]]></description><link>https://terminal-knight.hashnode.dev</link><generator>RSS for Node</generator><lastBuildDate>Thu, 22 Oct 2026 04:43:55 GMT</lastBuildDate><atom:link href="https://terminal-knight.hashnode.dev/rss.xml" rel="self" type="application/rss+xml"/><language><![CDATA[en]]></language><ttl>60</ttl><item><title><![CDATA[No More Finger Typing Gymnastics]]></title><description><![CDATA[Home Row Mods for Mac Users]]></description><link>https://terminal-knight.hashnode.dev/no-more-finger-typing-gymnastics</link><guid isPermaLink="true">https://terminal-knight.hashnode.dev/no-more-finger-typing-gymnastics</guid><category><![CDATA[ergonomic keyboards]]></category><category><![CDATA[typing test]]></category><category><![CDATA[keyboards]]></category><category><![CDATA[ergonomics]]></category><dc:creator><![CDATA[Adrian Nare]]></dc:creator><pubDate>Thu, 27 Feb 2025 21:18:56 GMT</pubDate><enclosure url="https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/npxXWgQ33ZQ/upload/c63289a495bacd950a41b27a3a19e652.jpeg" length="0" type="image/jpeg"/><content:encoded><![CDATA[<pre><code class="lang-txt">The Dilemma
+Home Row Mods to the Rescue
+Is This Just Another Gimmick?
+Okay, I'm Sold. How Do I Get Started?
+Using Karabiner Elements
+One More Thing...
+Closing Notes
+Useful Links
+</code></pre>
+<h2 id="heading-the-dilemma">The Dilemma</h2>
+<p>We spend a surprisingly large amount of time on our keyboards each day, typing away, getting things done (be it for work or play). It could be typing out a word document (that report whose deadline is due the next day), or filling in an Excel sheet (a daily routine in bookkeeping), or even just taking some notes (journaling maybe?).
+Whilst completing these tasks, it's very likely that you will need to use some specific function of the program, like copying (Ctrl + C) and pasting (Ctrl + V), or 'undo' (Ctrl + Z), saving the document (Ctrl + S), to name a few. The macOS version of these would be something like (Cmd + C) for saving. Most of these commands, among others, are pretty standard in most programs/apps we use, and have been ingrained in most people's muscle memory.</p>
+<blockquote>
+<p>The issue, however, is that the keys that enable us to perform these shortcuts, i.e. the Ctrl, Cmd, Alt/Option, and Shift keys (also known as the 'mod' keys) aren't positioned well on most generic keyboards and require us to move our hands off the home row (and off the keyboard for some) and then place our fingers on them, or even worse, twist and bend our fingers to reach them whilst pressing the other keys to complete the shortcut.</p>
+</blockquote>
+<p>Over time, performing these finger stances can hurt our fingers and even lead to Repetitive Strain Injuries. We rely on these shortcuts to get things done, so quitting using them is not on the table. "Then what can we do about this?" you ask.</p>
+<h2 id="heading-home-row-mods-to-the-rescue">Home Row Mods to the Rescue</h2>
+<p>Enter 'home row mods' (home row mods have joined the chat). "What are home row mods?" you ask. 'Mods' or modifier keys are the keys like Ctrl and Shift that, when combined with other keys, allow us to perform those specific shortcuts and tasks. 'Home row mods' simply means that those keys are positioned on the home row, right underneath our fingertips, which means we won't need to twist and turn our fingers to reach them. Now you're probably wondering what happens to the keys that were originally on the home row. Well, we still keep them in the same positions, however the behavior of the keys now depends on how we press them. So now, a single tap of the key would give the normal key value, but a long press would result in a modifier key being activated (the long press behavior is similar to how we use the Ctrl, Cmd, Alt/Option and Shift keys in their normal positions).</p>
+<h2 id="heading-is-this-just-another-gimmick">Is This Just Another Gimmick?</h2>
+<blockquote>
+<p>The short answer is no, you're still using your Command, Ctrl, Shift, and Option keys the same way you always have (i.e., long pressing the key and combining it with another key press). The difference being the fact that you've moved those keys to your home row, making it way easier for your fingers to reach them, without having to move your hands (or worse, bending and straining your fingers just to reach a mod key).</p>
+</blockquote>
+<p>And since we spend so much time on our computers, and our hands do so much for us each day, beyond just typing, and we also like to take care of ourselves, why wouldn't we want to make things easier for our hands and fingers?
+And you still get to use your home row keys (asdf - jkl;) like you normally would.</p>
+<h2 id="heading-okay-im-sold-how-do-i-get-started">Okay, I'm sold. How Do I Get Started?</h2>
+<p>The best part of this is that you don't need a fancy new keyboard to start using home row mods, you can just use your default or laptop keyboard that you use everyday to get started, with the help of an app/program known as "Karabiner-Elements". Karabiner-Elements is a user-friendly and easy to use app that allows you to configure and modify your keyboard's keys to behave differently from the default behavior. And thus we can use it to modify the home row keys of our keyboard to allow them to act as home row mods when we long press them. For example, we can map the keys Cmd, Alt/Option, Shift and Ctrl to the keys a, s, d and f respectively. Thus when we tap the key 'a' we get 'a' but if we long press 'a' then we activate the mod 'Cmd'.</p>
+<p>Another common use case for Karabiner-Elements is to convert the 'Caps Lock' key into the 'Esc' key, for those that use the Esc key heavily in their day-to-day tasks.</p>
+<h2 id="heading-using-karabiner-elements">Using Karabiner-Elements</h2>
+<ul>
+<li>Permissions - Upon installing/opening Karabiner-Elements, you will be asked to give it permissions in the "Login &amp; Extensions" section of the system settings, as well as in the "Privacy and Security" section, and any other permissions that it might need. Refer to this <a target="_blank" href="https://havn.blog/2024/03/03/a-good-way.html">article</a> for more details on the permissions needed, as well as the official Karabiner-Elements <a target="_blank" href="https://karabiner-elements.pqrs.org/docs">docs</a>.</li>
+</ul>
+<p><img src="karabiner-elements-gui.png" alt="The Karabiner-elements GUI " /></p>
+<ul>
+<li>Upon opening the app, you will land on the Simple Modifications section. You may be asked to select your keyboard as well as selecting the type of keyboard you have.</li>
+<li>In this section you can make simple key modifications for your keyboard; however, for setting up home row mods, we will need to go to the Complex Modifications section of the app, where we get the option to "Use a predefined rule" or "Setup new rule". For this part, we will select the Setup New Rule option.</li>
+</ul>
+<ul>
+<li>You will then be presented with a simple in-app text editor with an example JSON config inside. Karabiner-Elements uses a JSON config format to setup these complex modifications. Feel free to delete that example in the editor and paste in the following JSON config:</li>
+</ul>
+<p><a target="_blank" href="https://github.com/AdrianTNare/homerow-mods-blog-post/blob/main/snippet.md">Link to json config</a></p>
+<p>Phew, that's a bit long, but the gist of it is that it will setup the following key modifications:</p>
+<blockquote>
+<ul>
+<li>a - Left Command</li>
+<li>s - Left Option</li>
+<li>d - Left Shift</li>
+<li>f - Left Control</li>
+<li>j - Right Control</li>
+<li>k - Right Shift</li>
+<li>l - Right Option</li>
+<li>semicolon - Right Command</li>
+</ul>
+</blockquote>
+<ul>
+<li>Thus, long pressing any of these keys should trigger the respective mod key. Feel free to change this setup to suit your own desired home row mods layout, e.g., you might want to have the Command mod on F, as opposed to A like I did in my setup.</li>
+<li>The config also sets up a "tap + tap and hold" for the keys J and K, to trigger key repeating for the keys J and K, since a normal long press is now assigned to a home row mod. (I need this behavior for navigation in Vim)</li>
+</ul>
+<blockquote>
+<p>Pro Tip!!
+If you prefer modifying the config in your own default editor, you can access the full Karabiner-Elements JSON config in the path <code>~/.config/karabiner/karabiner.json</code> and paste the JSON above in the array value of the "rules" property.</p>
+</blockquote>
+<h2 id="heading-one-more-thing">One more thing...</h2>
+<p>We might need to adjust the amount of time it takes for a key press to be detected as a single tap and the amount of time it takes for a key press to be detected as a long press. Ideally, you want the long press detection time to be low enough that you don't have to wait a long time for a long press to be detected (which would slow you down) but high enough that you don't accidentally trigger a long press with a single tap whilst typing, which could lead to lots of mistakes when typing.<br />We might also need to adjust the max time window within which we can trigger the "tap + tap and hold" behavior.
+These can be adjusted in the parameters section of the Karabiner-elements gui. </p>
+<h3 id="heading-the-parameters">The parameters:</h3>
+<ol>
+<li>to_if_alone_timeout_milliseconds -&gt; the max tap detection time</li>
+<li>to_if_held_down_threshold_milliseconds -&gt; the long press detection time </li>
+<li>to_delayed_action_delay_milliseconds -&gt; the max time window within which we can trigger the "tap + tap and hold" behavior</li>
+<li>simultaneous_threshold_milliseconds -&gt; the simultaneous mods (e.g Ctrl + Shift) detection. </li>
+</ol>
+<p>Please refer to <a target="_blank" href="https://karabiner-elements.pqrs.org/docs/json/">docs</a> to get the most accurate descriptions of each.</p>
+<h3 id="heading-my-parameters">My parameters:</h3>
+<ol>
+<li>to_if_alone_timeout_milliseconds -&gt; 1000 (this is the default value)</li>
+<li>to_if_held_down_threshold_milliseconds -&gt; 110 (my custom value)</li>
+<li>to_delayed_action_delay_milliseconds -&gt; 250 (my custom value)</li>
+<li>simultaneous_threshold_milliseconds -&gt; 50 (this is the default value)</li>
+</ol>
+<h2 id="heading-closing-notes">Closing notes:</h2>
+<p>I do hope that you have fun getting started with home-row mods, and I encourage you to try it with a friend, which can be an encouraging boost toward embarking on and completing your transition to home-row mods, and also help you to be more pro-active in adopting the layout. And for those that own more sophisticated keyboards/external keyboards, I recommend you use the software that comes paired with your hardware to make this modification/change.</p>
+<h2 id="heading-useful-links">Useful Links:</h2>
+<ul>
+<li><a target="_blank" href="https://karabiner-elements.pqrs.org/docs/json/">karabiner-elements-docs</a></li>
+<li><a target="_blank" href="https://havn.blog/2024/03/03/a-good-way.html">another good guide on homerow mods on mac</a></li>
+<li><a target="_blank" href="https://www.youtube.com/watch?v=sLWQ4Gx88h4">Dreams of code youtube vid on setting up homerow mods cross platform</a></li>
+<li><a target="_blank" href="https://github.com/dreamsofcode-io/home-row-mods/tree/main">Dreams of code github repo on setting up homerow mods cross platform</a></li>
+</ul>
+]]></content:encoded></item><item><title><![CDATA[Resolving nextjs PUBLIC_ENV undefined prod issue]]></title><description><![CDATA[Next.js allows us to define env vars that we want to expose to the browser (consequently making them public) with the prefix NEXT_PUBLIC_, meaning that…]]></description><link>https://terminal-knight.hashnode.dev/resolving-nextjs-publicenv-undefined-prod-issue</link><guid isPermaLink="true">https://terminal-knight.hashnode.dev/resolving-nextjs-publicenv-undefined-prod-issue</guid><category><![CDATA[Next.js]]></category><category><![CDATA[Environment variables]]></category><category><![CDATA[Docker]]></category><category><![CDATA[azure-devops]]></category><dc:creator><![CDATA[Adrian Nare]]></dc:creator><pubDate>Mon, 16 Dec 2024 03:16:47 GMT</pubDate><content:encoded><![CDATA[<pre><code class="lang-txt">Context
+Backstory
+The Issue
+The solution
+Closing notes
+</code></pre>
+<h2 id="heading-context">Context</h2>
+<p>Next.js allows us to define env vars that we want to expose to the browser (consequently making them public) with the prefix <code>NEXT_PUBLIC_</code>, meaning that they will be bundled into the code (at build time, something I wish I had known back then) and made available to the browser.These are usually necessary for integrating with public APIs, like the Google Maps API, reCAPTCHA APIs, CMS APIs, etc.</p>
+<h2 id="heading-backstory">Backstory</h2>
+<p>I worked on a Next.js v12 app for an extended period of time and never encountered any env var issues whilst hosting the app on Vercel. All you had to do was redeploy the app every time you added a new env var (looking back, that should have been a tell of what was going on under the hood). Somewhere along the way, we switched to hosting the app on a Docker container on Azure's "Container Apps", which are specifically optimised for hosting Docker apps.</p>
+<p>The initial setup didn't involve any CI when deploying to prod, which meant we built the image ourselves locally, pushed it directly to the container registry, and the container app would automatically grab the latest image and run it. This worked flawlessly for some time, UNTIL the moment when we eventually introduced CI/CD (Azure Pipelines in this case) and moved away from "Container Apps" to Azure's "App Services" (app services have more flexibility than container apps, whilst retaining most of the container apps' features).</p>
+<h2 id="heading-the-issue">The issue</h2>
+<p>All of a sudden, some of our 3rd-party API integrations were broken in production but worked perfectly locally, be it in dev mode or prod mode.
+Debugging the deployed app revealed that the <code>NEXT_PUBLIC_</code> envs were "undefined", even though we had set them up in the "environment variables" section of the config settings on Azure.What was even more confusing at the time was that accessing the public envs from within Next.js' API routes a.k.a. the Next.js backend routes worked perfectly, both locally in dev and prod mode as well as on Azure App Services.</p>
+<p>I faced this issue for at least 12 months, with no clear answer as to why this issue was happening and with only a couple of (wrong) assumptions to lean on. To be fair, finding a solution to the problem was never prioritized as there were bigger features to tackle, and the "band-aid solution" was to just set the env vars as a constant within the code (a risky move for sure, as one could easily include a secret key within the code without the proper labelling, a problem that <code>NEXT_PUBLIC_</code> envs attempt to mitigate in the first place).</p>
+<h2 id="heading-the-solution">The solution</h2>
+<p>Working on a new feature that depended on a public env is what led me back to the issue (about 12 months later), prompting me to invest time into debugging the issue. It turns out that <code>NEXT_PUBLIC_</code> env vars should be available "at build time", so that they can be bundled into the code and made available to the browser. That means that whichever environment you're using to build your app should have these public env vars configured. This is not usually an issue if you're building the application locally, but needs to be addressed if you're building your app in a Docker image on a CI/CD pipeline.
+My solution was to pass the public envs to the Dockerfile using build arguments, access the build args using ARG in the Dockerfile and then pass them to the layer environment variables using Docker's ENV command:</p>
+<pre><code class="lang-dockerfile">
+<span class="hljs-comment"># Declare build arguments for Next.js public environment variables</span>
+<span class="hljs-keyword">ARG</span> NEXT_PUBLIC_ENV_NAME
+
+<span class="hljs-comment"># Pass the build arguments to environment variables</span>
+<span class="hljs-comment"># This makes them available during the build process and in the running container</span>
+<span class="hljs-keyword">ENV</span> NEXT_PUBLIC_ENV_NAME=${NEXT_PUBLIC_ENV_NAME}
+</code></pre>
+<p>This also gives your Dockerfile the versatility to be used in both Azure Pipelines or GitHub Actions.This means that in your GitHub Actions file you can make these available through GitHub Secrets like this:</p>
+<pre><code class="lang-yaml">
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">and</span> <span class="hljs-string">push</span> <span class="hljs-string">Docker</span> <span class="hljs-string">image</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">docker/build-push-action@v6</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">context:</span> <span class="hljs-string">.</span>
+        <span class="hljs-attr">push:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">tags:</span> <span class="hljs-string">${{</span> <span class="hljs-string">secrets.DOCKER_USERNAME</span> <span class="hljs-string">}}/my-nextjs-app:latest</span>
+        <span class="hljs-attr">build-args:</span> <span class="hljs-string">|</span>
+          <span class="hljs-string">NEXT_PUBLIC_ENV_NAME=${{</span> <span class="hljs-string">secrets.NEXT_PUBLIC_ENV_NAME</span> <span class="hljs-string">}}</span>
+</code></pre>
+<p>And in Azure Pipelines, you could use Azure DevOps' "variable groups" in your Azure Pipelines YAML file to pass these variables like this:</p>
+<pre><code class="lang-yaml">
+<span class="hljs-attr">variables:</span>
+  <span class="hljs-comment"># Reference variable groups based on branch/environment</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">group:</span> <span class="hljs-string">docker-registry-config</span> <span class="hljs-comment"># Common Docker settings</span>
+
+  <span class="hljs-bullet">-</span> <span class="hljs-string">${{</span> <span class="hljs-string">if</span> <span class="hljs-string">eq(variables['Build.SourceBranch'],</span> <span class="hljs-string">'refs/heads/dev'</span><span class="hljs-string">)</span> <span class="hljs-string">}}:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">group:</span> <span class="hljs-string">nextjs-dev</span>
+
+<span class="hljs-comment"># other steps...</span>
+
+          <span class="hljs-bullet">-</span> <span class="hljs-attr">task:</span> <span class="hljs-string">Docker@2</span>
+            <span class="hljs-attr">inputs:</span>
+              <span class="hljs-attr">command:</span> <span class="hljs-string">"build"</span>
+              <span class="hljs-attr">dockerfile:</span> <span class="hljs-string">"./path/to/Dockerfile"</span>
+              <span class="hljs-attr">buildContext:</span> <span class="hljs-string">"."</span>
+              <span class="hljs-attr">repository:</span> <span class="hljs-string">$(DOCKER_IMAGE_NAME_CLIENT)</span>
+              <span class="hljs-attr">containerRegistry:</span> <span class="hljs-string">"$(DOCKER_REGISTRY_SERVICE_CONNECTION)"</span>
+              <span class="hljs-attr">tags:</span> <span class="hljs-string">|
+                $(DOCKER_IMAGE_TAG)
+</span>              <span class="hljs-attr">arguments:</span> <span class="hljs-string">|</span>
+                <span class="hljs-string">--build-arg</span> <span class="hljs-string">NEXT_PUBLIC_ENV_NAME==$(NEXT_PUBLIC_ENV_NAME)</span>
+</code></pre>
+<p>In this case it would be important to ensure that the variable group you reference has those environment variables defined.</p>
+<h2 id="heading-closing-notes">Closing notes</h2>
+<p>Initially, I used to build the Docker image locally and push it to a container registry. Since the local repository also included a .env file, it meant that the env variables were available at build time, and thus I never experienced any issues with these.Hopefully, my experience can help save you hours of debugging this issue like I did and can also help someone who had previously solved the issue with a much jankier approach, to simplify their solution.</p>
+<h2 id="heading-useful-links">Useful Links</h2>
+<ul>
+<li><a target="_blank" href="https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#bundling-environment-variables-for-the-browser">Next.js public envs</a></li>
+<li><a target="_blank" href="https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#bundling-environment-variables-for-the-browser">Azure devops variable groups</a></li>
+</ul>
+]]></content:encoded></item></channel></rss>
