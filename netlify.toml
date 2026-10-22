@@ -1,0 +1,10 @@
+# The site lives in a workspace package; Netlify installs from the repo root
+# (pnpm workspace) and builds this one app.
+[build]
+  base = "apps/playground"
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  SKIP_ENV_VALIDATION = "true"
