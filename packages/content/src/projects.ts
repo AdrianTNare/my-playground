@@ -10,7 +10,9 @@ export const projects: Project[] = ProjectSchema.array().parse([
     tags: ["Next.js", "TypeScript", "Payload", "Hono", "Tailwind"],
     links: [
       { kind: "source", href: "https://github.com/AdrianTNare/my-playground" },
+      { kind: "live", href: "https://adriannare.netlify.app/" },
     ],
+    preview: "/projects/my-playground.webp",
   },
   {
     slug: "forum-frontend",

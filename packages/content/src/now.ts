@@ -15,7 +15,7 @@ export const nowPage = NowPageSchema.parse({
       heading: "Learning",
       paragraphs: [
         "Agentic coding tools, Claude Code and MCP servers in particular, and how to fit them into a team's workflow without losing the plot.",
-        "Hono, Zod and Drizzle on side projects, including the API that will sit behind this site.",
+        "Hono, Zod and Drizzle on side projects, including the API behind this site.",
       ],
     },
     {
