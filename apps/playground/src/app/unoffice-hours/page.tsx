@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
-import { unofficeHours } from "@/content/unoffice-hours";
+import { unofficeHours } from "@playground/content";
 
 export const metadata: Metadata = {
   title: "Unoffice hours",
@@ -40,6 +40,8 @@ const DiffList = ({ heading, marker, items }: DiffListProps) => {
 const UnofficeHoursPage = () => {
   const { bookingUrl, durationMinutes, timezone, intro, goodFor, notFor } =
     unofficeHours;
+  // Until a booking page exists the link is an email; it opens in place.
+  const byEmail = bookingUrl?.startsWith("mailto:") ?? false;
 
   return (
     <BoothPage>
@@ -55,12 +57,11 @@ const UnofficeHoursPage = () => {
         {bookingUrl ? (
           <a
             href={bookingUrl}
-            target="_blank"
-            rel="noopener"
+            {...(byEmail ? {} : { target: "_blank", rel: "noopener" })}
             data-nav-sound
             className="inline-flex items-center gap-2 rounded-md bg-accent px-[18px] py-[11px] font-mono text-[13px] font-semibold text-ink"
           >
-            ./book-a-call.sh
+            {byEmail ? "./email-to-book.sh" : "./book-a-call.sh"}
           </a>
         ) : (
           <span className="inline-flex items-center gap-2 rounded-md border border-dashed border-[#4a3f37] px-[18px] py-[11px] font-mono text-[13px] text-muted">
@@ -69,6 +70,7 @@ const UnofficeHoursPage = () => {
         )}
         <span className="font-mono text-[12.5px] text-muted">
           {durationMinutes} min, times in {timezone}
+          {byEmail && ", reply with a couple of slots that suit you"}
         </span>
       </div>
 

@@ -1,7 +1,8 @@
-cd apps/playground
-npx lint-staged
+# Each app has its own lint-staged config, scoped to its own files.
+for app in apps/playground apps/cms; do
+  (cd "$app" && npx lint-staged) || exit 1
+done
 
 # tsc needs the whole program, so typecheck runs workspace-wide rather than
 # as a per-file lint-staged entry.
-cd ../..
 pnpm typecheck

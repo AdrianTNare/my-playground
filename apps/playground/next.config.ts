@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@playground/contracts"],
+  transpilePackages: ["@playground/contracts", "@playground/content"],
   images: {
     // Blog cover images from the Hashnode feed.
     remotePatterns: [

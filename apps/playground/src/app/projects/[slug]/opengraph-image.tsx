@@ -1,4 +1,4 @@
-import { findProject, projects } from "@/content/projects";
+import { findProject, projects } from "@playground/content";
 import { ogImage } from "@/og/render";
 
 export const alt = "A project by Adrian Nare";

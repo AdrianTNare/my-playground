@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
-import { projects } from "@/content/projects";
+import { projects } from "@playground/content";
 
 export const metadata: Metadata = {
   title: "Projects",
