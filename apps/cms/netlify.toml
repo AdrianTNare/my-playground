@@ -9,6 +9,11 @@
 [build.environment]
   NODE_VERSION = "24"
 
+# Sites created through the API skip framework detection, so the Next.js
+# runtime has to be declared; without it the deploy is static files only.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Deploy previews share the production database, so they build without
 # migrating; only main (production) applies migrations.
 [context.deploy-preview]
