@@ -3,14 +3,17 @@ import Link from "next/link";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
-import { projects } from "@playground/content";
+import { getProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects",
   description: "Things Adrian Nare has built, with source and live links.",
 };
 
-const ProjectsPage = () => {
+export const revalidate = 3600;
+
+const ProjectsPage = async () => {
+  const projects = await getProjects();
   return (
     <BoothPage>
       <BoothHeader command="ls ~/projects" title="Projects">

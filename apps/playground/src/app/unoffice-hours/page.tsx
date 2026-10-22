@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
-import { unofficeHours } from "@playground/content";
+import { getUnofficeHours } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Unoffice hours",
@@ -37,9 +37,11 @@ const DiffList = ({ heading, marker, items }: DiffListProps) => {
   );
 };
 
-const UnofficeHoursPage = () => {
+export const revalidate = 3600;
+
+const UnofficeHoursPage = async () => {
   const { bookingUrl, durationMinutes, timezone, intro, goodFor, notFor } =
-    unofficeHours;
+    await getUnofficeHours();
   // Until a booking page exists the link is an email; it opens in place.
   const byEmail = bookingUrl?.startsWith("mailto:") ?? false;
 

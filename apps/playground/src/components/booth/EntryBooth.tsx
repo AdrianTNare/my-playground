@@ -1,4 +1,6 @@
+import type { Entry } from "@playground/contracts";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { findBooth } from "@/booths";
 import { entriesFor } from "@/content/entries";
 import { BoothHeader } from "./BoothHeader";
@@ -7,6 +9,10 @@ import { EntryList } from "./EntryList";
 
 interface EntryBoothProps {
   href: string;
+  /** The booth's real entries; empty shows the coming-soon placeholder. */
+  entries?: Entry[];
+  /** Replaces the default list when the booth has its own layout. */
+  children?: ReactNode;
 }
 
 const boothFor = (href: string) => {
@@ -21,15 +27,24 @@ export const entryBoothMetadata = (href: string): Metadata => {
 };
 
 /** A booth whose page is a listing of entries (TIL, refs, media…). */
-export const EntryBooth = ({ href }: EntryBoothProps) => {
+export const EntryBooth = ({
+  href,
+  entries = [],
+  children,
+}: EntryBoothProps) => {
   const booth = boothFor(href);
+  const empty = entries.length === 0 && !children;
 
   return (
     <BoothPage>
       <BoothHeader command={`ls ~${href}`} title={booth.title}>
         <p>{booth.description}</p>
       </BoothHeader>
-      <EntryList entries={entriesFor(href)} />
+      {empty ? (
+        <EntryList entries={entriesFor(href)} />
+      ) : (
+        (children ?? <EntryList entries={entries} />)
+      )}
     </BoothPage>
   );
 };
