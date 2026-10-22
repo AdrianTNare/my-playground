@@ -162,6 +162,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+packageExtensionsChecksum: sha256-DUwDQ/PLIjIvh5kGLxORNE8INefubYiDFutXiGShqyo=
+
 importers:
 
   .:
@@ -6942,7 +6944,7 @@ snapshots:
   '@payloadcms/db-sqlite@3.91.0(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))(supports-color@7.2.0)':
     dependencies:
       '@libsql/client': 0.14.0
-      '@payloadcms/drizzle': 3.91.0(@libsql/client@0.14.0)(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))
+      '@payloadcms/drizzle': 3.91.0(@libsql/client@0.14.0)(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))(supports-color@7.2.0)
       console-table-printer: 2.12.1
       drizzle-kit: 0.31.7(supports-color@7.2.0)
       drizzle-orm: 0.45.2(@libsql/client@0.14.0)
@@ -6983,10 +6985,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@payloadcms/drizzle@3.91.0(@libsql/client@0.14.0)(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))':
+  '@payloadcms/drizzle@3.91.0(@libsql/client@0.14.0)(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))(supports-color@7.2.0)':
     dependencies:
       console-table-printer: 2.12.1
       dequal: 2.0.3
+      drizzle-kit: 0.31.7(supports-color@7.2.0)
       drizzle-orm: 0.45.2(@libsql/client@0.14.0)
       payload: 3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3)
       prompts: 2.4.2
@@ -7022,6 +7025,7 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+      - supports-color
 
   '@payloadcms/graphql@3.91.0(graphql@16.14.2)(payload@3.91.0(graphql@16.14.2)(supports-color@7.2.0)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
