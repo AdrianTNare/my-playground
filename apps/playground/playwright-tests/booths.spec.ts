@@ -7,7 +7,9 @@ test.describe("booth routes", () => {
       const response = await page.goto(booth.href);
       expect(response?.status()).toBe(200);
       const heading = booth.href === "/" ? "Adrian Nare" : booth.title;
-      await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { level: 1, name: heading }),
+      ).toBeVisible();
     });
   }
 
@@ -15,7 +17,9 @@ test.describe("booth routes", () => {
     await page.goto("/projects");
     await page.getByRole("link", { name: "forum-frontend/" }).click();
     await expect(page).toHaveURL("/projects/forum-frontend");
-    await expect(page.getByRole("heading", { level: 1, name: "forum-frontend" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 1, name: "forum-frontend" }),
+    ).toBeVisible();
   });
 
   for (const [group, target] of [
@@ -32,6 +36,8 @@ test.describe("booth routes", () => {
   test("unknown paths show the no-such-booth page", async ({ page }) => {
     const response = await page.goto("/nope");
     expect(response?.status()).toBe(404);
-    await expect(page.getByRole("heading", { name: "No such booth" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "No such booth" }),
+    ).toBeVisible();
   });
 });

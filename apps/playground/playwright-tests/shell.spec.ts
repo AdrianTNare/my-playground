@@ -21,10 +21,15 @@ test.describe("desktop shell", () => {
     const nav = page.getByRole("navigation", { name: "Booths" }).first();
     await nav.getByRole("link", { name: "now" }).click();
     await expect(page).toHaveURL("/now");
-    await expect(nav.getByRole("link", { name: "now" })).toHaveAttribute("aria-current", "page");
+    await expect(nav.getByRole("link", { name: "now" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 
-  test("clicking a booth plays a tick, unless muted, and mute persists", async ({ page }) => {
+  test("clicking a booth plays a tick, unless muted, and mute persists", async ({
+    page,
+  }) => {
     await page.addInitScript(countTicks);
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Booths" }).first();
@@ -38,10 +43,9 @@ test.describe("desktop shell", () => {
     await expect(toggle).toHaveAttribute("aria-pressed", "false");
 
     await page.reload();
-    await expect(page.getByRole("button", { name: /sound:/ }).first()).toHaveAttribute(
-      "aria-pressed",
-      "false",
-    );
+    await expect(
+      page.getByRole("button", { name: /sound:/ }).first(),
+    ).toHaveAttribute("aria-pressed", "false");
     const before = await ticks(page);
     await nav.getByRole("link", { name: "projects" }).click();
     await expect(page).toHaveURL("/projects");
@@ -61,7 +65,9 @@ test.describe("mobile shell", () => {
     await dialog.getByRole("link", { name: "til" }).click();
     await expect(page).toHaveURL("/writing/til");
     await expect(dialog).toBeHidden();
-    await expect(page.getByRole("heading", { level: 1, name: "TIL" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 1, name: "TIL" }),
+    ).toBeVisible();
   });
 
   test("Esc closes the booths menu", async ({ page }) => {
@@ -79,10 +85,15 @@ test("accent choice persists across reloads", async ({ page }) => {
   await page.getByRole("button", { name: "sage" }).click();
   const accent = () =>
     page.evaluate(() =>
-      getComputedStyle(document.documentElement).getPropertyValue("--accent").trim(),
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--accent")
+        .trim(),
     );
   expect(await accent()).toBe("#8a9a6d");
   await page.reload();
   expect(await accent()).toBe("#8a9a6d");
-  await expect(page.getByRole("button", { name: "sage" })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: "sage" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
 });
