@@ -33,7 +33,9 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const links = await paletteLinks();
+
   return (
     <html
       lang="en"
@@ -58,7 +60,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             </div>
           </div>
           <AccentPicker />
-          <CommandPalette links={paletteLinks()} />
+          <CommandPalette links={links} />
         </Providers>
       </body>
     </html>

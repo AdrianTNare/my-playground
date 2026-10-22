@@ -4,26 +4,26 @@ import { notFound } from "next/navigation";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
-import { findProject, projects } from "@playground/content";
+import { getProject, getProjects } from "@/lib/content";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamicParams = false;
+export const revalidate = 3600;
 
-export const generateStaticParams = () =>
-  projects.map(({ slug }) => ({ slug }));
+export const generateStaticParams = async () =>
+  (await getProjects()).map(({ slug }) => ({ slug }));
 
 export const generateMetadata = async ({
   params,
 }: ProjectPageProps): Promise<Metadata> => {
-  const project = findProject((await params).slug);
+  const project = await getProject((await params).slug);
   return project ? { title: project.name, description: project.summary } : {};
 };
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
-  const project = findProject((await params).slug);
+  const project = await getProject((await params).slug);
   if (!project) notFound();
 
   return (
