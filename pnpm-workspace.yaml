@@ -17,3 +17,11 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+
+# @payloadcms/drizzle imports drizzle-kit/api without declaring drizzle-kit,
+# relying on hoisting. apps/api's drizzle-kit 1.x (no /api export) would win
+# that hoist, so pin the version @payloadcms/db-sqlite itself uses.
+packageExtensions:
+  "@payloadcms/drizzle":
+    dependencies:
+      drizzle-kit: 0.31.7
