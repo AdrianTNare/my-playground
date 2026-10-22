@@ -6,7 +6,7 @@ import { ProjectLinks } from "@/components/booth/ProjectLinks";
 import { projects } from "@/content/projects";
 
 export const metadata: Metadata = {
-  title: "projects",
+  title: "Projects",
   description: "Things Adrian Nare has built, with source and live links.",
 };
 

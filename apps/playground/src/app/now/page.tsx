@@ -4,7 +4,7 @@ import { BoothPage } from "@/components/booth/BoothPage";
 import { nowPage } from "@/content/now";
 
 export const metadata: Metadata = {
-  title: "now",
+  title: "Now",
   description: "What Adrian Nare is working on and thinking about this season.",
 };
 
