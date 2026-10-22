@@ -64,3 +64,34 @@ test("the CMS refresh hook refuses requests without the secret", async ({
   });
   expect(res.status()).toBe(401);
 });
+
+test("the feed lists TILs with full bodies", async ({ request }) => {
+  const res = await request.get("/feed.xml");
+  expect(res.headers()["content-type"]).toContain("application/rss+xml");
+  const xml = await res.text();
+  expect(xml).toContain(
+    "<title>Tailwind 4 dropped the pointer cursor on buttons</title>",
+  );
+  expect(xml).toContain("/writing/til/tailwind-4-button-cursor</link>");
+  expect(xml).toContain("<content:encoded><![CDATA[");
+});
+
+test("the layout advertises the feed", async ({ page }) => {
+  await page.goto("/");
+  await expect(
+    page.locator('link[rel="alternate"][type="application/rss+xml"]'),
+  ).toHaveAttribute("href", /\/feed\.xml$/);
+});
+
+test("the sidebar shows entry counts, not for empty booths", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, "the sidebar is the desktop tree");
+  await page.goto("/");
+  const tree = page.getByRole("navigation", { name: "Booths" }).first();
+  await expect(tree.getByRole("link", { name: "til (6)" })).toBeVisible();
+  await expect(
+    tree.getByRole("link", { name: "media", exact: true }),
+  ).toBeVisible();
+});

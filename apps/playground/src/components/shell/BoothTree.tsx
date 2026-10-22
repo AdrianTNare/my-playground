@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { booths, isActive, type Booth } from "@/booths";
+import type { BoothCounts } from "@/lib/counts";
 import { useVimNav } from "./useVimNav";
 
 interface BoothTreeProps {
@@ -13,6 +14,8 @@ interface BoothTreeProps {
   roomy?: boolean;
   /** Drive this tree with vim keys page-wide (see useVimNav). */
   vimKeys?: boolean;
+  /** Real entries per booth; shown muted, like `til (6)`. */
+  counts?: BoothCounts;
 }
 
 interface BranchProps {
@@ -20,6 +23,7 @@ interface BranchProps {
   pathname: string;
   roomy: boolean;
   onNavigate?: () => void;
+  counts: BoothCounts;
 }
 
 // `tree`-style connectors drawn with borders rather than box-drawing glyphs,
@@ -29,7 +33,13 @@ interface BranchProps {
 const itemConnectors =
   "relative pl-[22px] before:absolute before:top-0 before:left-[3px] before:h-full before:border-l before:border-[#4a3f37] last:before:h-[var(--elbow)] after:absolute after:top-[var(--elbow)] after:left-[3px] after:w-[13px] after:border-t after:border-[#4a3f37]";
 
-const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
+const Branch = ({
+  items,
+  pathname,
+  roomy,
+  onNavigate,
+  counts,
+}: BranchProps) => {
   const rowHeight = roomy ? "min-h-11" : "min-h-7";
 
   return (
@@ -56,6 +66,9 @@ const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
                 }`}
               >
                 {booth.name}
+                {(counts[booth.href] ?? 0) > 0 && (
+                  <span className="text-[#6e6157]">({counts[booth.href]})</span>
+                )}
                 {active ? (
                   <span
                     aria-hidden
@@ -76,6 +89,7 @@ const Branch = ({ items, pathname, roomy, onNavigate }: BranchProps) => {
                 pathname={pathname}
                 roomy={roomy}
                 onNavigate={onNavigate}
+                counts={counts}
               />
             )}
           </li>
@@ -89,6 +103,7 @@ export const BoothTree = ({
   onNavigate,
   roomy = false,
   vimKeys = false,
+  counts = {},
 }: BoothTreeProps) => {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
@@ -108,6 +123,7 @@ export const BoothTree = ({
         pathname={pathname}
         roomy={roomy}
         onNavigate={onNavigate}
+        counts={counts}
       />
     </nav>
   );

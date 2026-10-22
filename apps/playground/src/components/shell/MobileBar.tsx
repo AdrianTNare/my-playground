@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
+import type { BoothCounts } from "@/lib/counts";
 import { BoothTree } from "./BoothTree";
 import { openPalette } from "./CommandPalette";
 import { SoundToggle } from "./SoundToggle";
@@ -10,7 +11,11 @@ import { SoundToggle } from "./SoundToggle";
 const promptPath = (pathname: string) =>
   pathname === "/" ? "~" : `~${pathname}`;
 
-export const MobileBar = () => {
+interface MobileBarProps {
+  counts: BoothCounts;
+}
+
+export const MobileBar = ({ counts }: MobileBarProps) => {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -74,7 +79,7 @@ export const MobileBar = () => {
             </button>
           </div>
           <div className="mt-6 flex-1 overflow-y-auto">
-            <BoothTree roomy vimKeys onNavigate={close} />
+            <BoothTree roomy vimKeys counts={counts} onNavigate={close} />
           </div>
           <div className="border-t border-[#2a221d] py-4">
             <SoundToggle />
