@@ -18,7 +18,7 @@ export const Sidebar = () => {
       <div className="mt-5 flex-1 overflow-y-auto">
         <BoothTree vimKeys />
       </div>
-      <div className="flex flex-col gap-2 border-t border-[#2a221d] pt-4">
+      <div className="flex flex-col items-start gap-2 border-t border-[#2a221d] pt-4">
         <SoundToggle />
         <p className="font-mono text-[11px] text-[#6e6157]">
           <kbd className="text-muted">j</kbd>/
