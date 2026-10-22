@@ -101,3 +101,37 @@ button:not(:disabled),
 .cursor-blink {
   animation: blink 1.1s steps(1) infinite;
 }
+
+/* Mobile booths menu: fades and drops in when opened. The motion answers the
+   visitor's tap, and is skipped for reduced motion. */
+.booths-dialog {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out,
+    overlay 180ms allow-discrete,
+    display 180ms allow-discrete;
+}
+
+.booths-dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .booths-dialog[open] {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booths-dialog {
+    transition: none;
+  }
+
+  .cursor-blink {
+    animation: none;
+  }
+}

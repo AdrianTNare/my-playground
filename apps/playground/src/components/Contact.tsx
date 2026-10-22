@@ -53,7 +53,7 @@ export const Contact = () => {
         </div>
       </div>
       <div className="mt-[30px] font-mono text-[11px] text-[#5e5248]">
-        Made with React · Adrian Nare © 2026{" "}
+        Made with Next.js · Adrian Nare © 2026{" "}
         <span className="text-accent cursor-blink">_</span>
       </div>
     </section>
