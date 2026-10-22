@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
-import { nowPage } from "@playground/content";
+import { getNow } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Now",
@@ -16,7 +16,10 @@ const formatUpdated = (iso: string) =>
     timeZone: "UTC",
   });
 
-const NowPage = () => {
+export const revalidate = 3600;
+
+const NowPage = async () => {
+  const nowPage = await getNow();
   return (
     <BoothPage>
       <BoothHeader command="cat now.md" title="Now">

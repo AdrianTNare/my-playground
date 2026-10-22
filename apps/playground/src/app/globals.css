@@ -102,6 +102,126 @@ button:not(:disabled),
   animation: blink 1.1s steps(1) infinite;
 }
 
+/* Markdown bodies (TILs, reflections, media reactions...): the Now page's
+   reading style, with markdown syntax echoed back as terminal glyphs. */
+@layer components {
+  .prose-terminal {
+    max-width: 68ch;
+    font-family: var(--font-mono);
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #d6c8b3;
+  }
+
+  .prose-terminal > * + * {
+    margin-top: 1.1em;
+  }
+
+  .prose-terminal :where(h2, h3, h4) {
+    margin-top: 2.2em;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-bright);
+  }
+
+  .prose-terminal h2::before {
+    content: "## ";
+    color: var(--color-sage);
+  }
+
+  .prose-terminal :where(h3, h4)::before {
+    content: "### ";
+    color: var(--color-sage);
+  }
+
+  .prose-terminal a {
+    color: var(--color-amber);
+    text-decoration: underline;
+    text-decoration-color: #4a3f37;
+    text-underline-offset: 4px;
+    transition: color 150ms;
+  }
+
+  .prose-terminal a:hover {
+    color: var(--accent);
+  }
+
+  .prose-terminal :where(strong) {
+    color: var(--color-bright);
+    font-weight: 600;
+  }
+
+  .prose-terminal :not(pre) > code {
+    border: 1px solid var(--color-edge);
+    border-radius: 4px;
+    background: var(--color-panel2);
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+    color: #e6dacb;
+  }
+
+  .prose-terminal pre {
+    overflow-x: auto;
+    border: 1px solid var(--color-edge);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .prose-terminal :where(ul, ol) {
+    padding-left: 2ch;
+  }
+
+  .prose-terminal ul > li {
+    list-style: none;
+    position: relative;
+  }
+
+  .prose-terminal ul > li::before {
+    content: "-";
+    position: absolute;
+    left: -2ch;
+    color: var(--accent);
+  }
+
+  .prose-terminal ol {
+    list-style: decimal;
+  }
+
+  .prose-terminal ol > li::marker {
+    color: var(--accent);
+  }
+
+  .prose-terminal li + li {
+    margin-top: 0.35em;
+  }
+
+  .prose-terminal blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5ch;
+    color: var(--color-clay);
+  }
+
+  .prose-terminal hr {
+    border: 0;
+    border-top: 1px dashed #4a3f37;
+  }
+
+  .prose-terminal table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .prose-terminal :where(th, td) {
+    border: 1px solid var(--color-edge);
+    padding: 6px 10px;
+    text-align: left;
+  }
+}
+
 /* Mobile booths menu: fades and drops in when opened. The motion answers the
    visitor's tap, and is skipped for reduced motion. */
 .booths-dialog {
