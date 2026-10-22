@@ -51,6 +51,9 @@ export default buildConfig({
       authToken: process.env.DATABASE_AUTH_TOKEN,
     },
     migrationDir: path.resolve(dirname, "migrations"),
+    // Schema changes only ever come from migrations. Dev-mode push marks the
+    // database as "dev", and `payload migrate` then refuses to run on deploy.
+    push: false,
   }),
   graphQL: { disable: true },
   telemetry: false,
