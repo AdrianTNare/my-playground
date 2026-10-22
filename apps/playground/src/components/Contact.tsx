@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
-export default function Contact() {
-  const [copied, setCopied] = useState(false)
+export const Contact = () => {
+  const [copied, setCopied] = useState(false);
 
   const copy = () => {
     try {
-      navigator.clipboard?.writeText('adriantnare@icloud.com')
-    } catch (e) {
+      navigator.clipboard?.writeText("adriantnare@icloud.com");
+    } catch {
       /* clipboard unavailable */
     }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1600)
-  }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  };
 
   return (
     <section
@@ -30,7 +30,7 @@ export default function Contact() {
             onClick={copy}
             className="mt-3.5 inline-flex cursor-pointer items-center gap-2 rounded-md border border-dashed border-[#4a3f37] px-3.5 py-[9px] font-mono text-[14px] font-medium text-accent"
           >
-            {copied ? 'copied to clipboard ✓' : 'adriantnare@icloud.com'}
+            {copied ? "copied to clipboard ✓" : "adriantnare@icloud.com"}
           </button>
         </div>
         <div className="flex flex-col gap-2.5 font-mono text-[13px] font-medium">
@@ -53,8 +53,9 @@ export default function Contact() {
         </div>
       </div>
       <div className="mt-[30px] font-mono text-[11px] text-[#5e5248]">
-        Made with React · Adrian Nare © 2026 <span className="text-accent cursor-blink">_</span>
+        Made with React · Adrian Nare © 2026{" "}
+        <span className="text-accent cursor-blink">_</span>
       </div>
     </section>
-  )
-}
+  );
+};

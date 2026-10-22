@@ -1,6 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* The terminal palette is locked (docs/architecture.md). daisyUI ships its
+   own `accent`, so the theme points it at the picker's --accent too. */
+@plugin 'daisyui' {
+  themes: false;
+}
+
+@plugin 'daisyui/theme' {
+  name: "playground";
+  default: true;
+  color-scheme: dark;
+  --color-base-100: #1e1916;
+  --color-base-200: #251e1a;
+  --color-base-300: #2c2420;
+  --color-base-content: #c8baa6;
+  --color-primary: var(--accent);
+  --color-primary-content: #1e1916;
+  --color-secondary: #cf9b5c;
+  --color-secondary-content: #1e1916;
+  --color-accent: var(--accent);
+  --color-accent-content: #1e1916;
+  --color-neutral: #38302a;
+  --color-neutral-content: #f3e9d8;
+  --color-info: #8a7c6e;
+  --color-info-content: #1e1916;
+  --color-success: #8a9a6d;
+  --color-success-content: #1e1916;
+  --color-warning: #cf9b5c;
+  --color-warning-content: #1e1916;
+  --color-error: #c0613f;
+  --color-error-content: #1e1916;
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.625rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --color-ink: #1e1916;
+  --color-panel: #251e1a;
+  --color-panel2: #2c2420;
+  --color-edge: #38302a;
+  --color-bright: #f3e9d8;
+  --color-body: #c8baa6;
+  --color-muted: #8a7c6e;
+  --color-amber: #cf9b5c;
+  --color-sage: #8a9a6d;
+  --color-clay: #b6a892;
+}
+
+/* Set at runtime by the accent picker. */
+@theme inline {
+  --color-accent: var(--accent);
+
+  /* next/font variables, set on <html> in layout.tsx. */
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-sans: var(--font-hanken-grotesk), sans-serif;
+}
 
 :root {
   --accent: #c0613f;
@@ -14,7 +73,13 @@ body {
   margin: 0;
   background: #1e1916;
   color: #c8baa6;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Tailwind 4 dropped the v3 pointer cursor on buttons. */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
 }
 
 ::selection {
@@ -23,8 +88,14 @@ body {
 }
 
 @keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .cursor-blink {

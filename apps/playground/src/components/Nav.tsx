@@ -1,6 +1,6 @@
-const links = ['now', 'work', 'stack', 'about', 'contact']
+const links = ["now", "work", "stack", "about", "contact"];
 
-export default function Nav() {
+export const Nav = () => {
   return (
     <header className="sticky top-0 z-20 border-b border-[#2f2722] bg-ink/85 backdrop-blur">
       <div className="mx-auto flex max-w-[940px] flex-wrap items-center justify-between gap-4 px-[clamp(18px,4vw,34px)] py-3.5">
@@ -14,7 +14,11 @@ export default function Nav() {
             <a
               key={l}
               href={`#${l}`}
-              className={l === 'contact' ? 'text-accent' : 'transition-colors hover:text-accent'}
+              className={
+                l === "contact"
+                  ? "text-accent"
+                  : "transition-colors hover:text-accent"
+              }
             >
               {l}
             </a>
@@ -22,5 +26,5 @@ export default function Nav() {
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};
