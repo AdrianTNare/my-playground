@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BoothHeader } from "@/components/booth/BoothHeader";
 import { BoothPage } from "@/components/booth/BoothPage";
+import { CastPlayer } from "@/components/booth/CastPlayer";
 import { ProjectLinks } from "@/components/booth/ProjectLinks";
 import { getProject, getProjects } from "@/lib/content";
 import { formatDay } from "@/lib/dates";
@@ -93,6 +94,12 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       <p className="mt-10 max-w-[68ch] font-mono text-[14.5px] leading-[1.8] text-[#d6c8b3]">
         {project.description}
       </p>
+
+      {project.cast && (
+        <div className="mt-10">
+          <CastPlayer src={project.cast} title={project.name} />
+        </div>
+      )}
     </BoothPage>
   );
 };

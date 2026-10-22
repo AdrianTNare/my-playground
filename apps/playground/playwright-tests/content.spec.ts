@@ -95,3 +95,9 @@ test("the sidebar shows entry counts, not for empty booths", async ({
     tree.getByRole("link", { name: "media", exact: true }),
   ).toBeVisible();
 });
+
+test("a project with a cast plays it on its page", async ({ page }) => {
+  await page.goto("/projects/my-playground");
+  await expect(page.getByText("my-playground: recorded session")).toBeVisible();
+  await expect(page.locator(".ap-player")).toBeVisible();
+});

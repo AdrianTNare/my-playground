@@ -47,6 +47,11 @@ export const Projects: CollectionConfig = {
       type: "text",
       admin: { description: "Screenshot URL" },
     },
+    {
+      name: "cast",
+      type: "text",
+      admin: { description: "asciinema .cast URL, played on the project page" },
+    },
     slugField,
     tagsField,
     {
