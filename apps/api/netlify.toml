@@ -1,6 +1,7 @@
 # Netlify site for the API (base directory: apps/api).
 [build]
-  command = "pnpm typecheck"
+  # Production applies pending migrations to Turso before deploying.
+  command = "pnpm db:migrate && pnpm typecheck"
   publish = "public"
 
 [build.environment]
@@ -9,3 +10,10 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+# Previews share the production database, so they never migrate it.
+[context.deploy-preview]
+  command = "pnpm typecheck"
+
+[context.branch-deploy]
+  command = "pnpm typecheck"

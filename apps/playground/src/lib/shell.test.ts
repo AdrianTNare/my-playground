@@ -82,3 +82,26 @@ describe("runCommand", () => {
     expect(runCommand("fortune", ctx).lines[0]).toMatch(/cache invalidation/);
   });
 });
+
+describe("guestbook", () => {
+  it.each([
+    ['echo "lovely booths" >> guestbook', "lovely booths"],
+    ["echo 'single quotes' >> guestbook", "single quotes"],
+    ["echo no quotes at all >>guestbook", "no quotes at all"],
+  ])("%s signs it", (input, message) => {
+    expect(runCommand(input, ctx).effect).toEqual({
+      kind: "guestbook-sign",
+      message,
+    });
+  });
+
+  it("cat guestbook reads it", () => {
+    expect(runCommand("cat guestbook", ctx).effect).toEqual({
+      kind: "guestbook-read",
+    });
+  });
+
+  it("plain echo still just echoes", () => {
+    expect(runCommand("echo hi", ctx)).toEqual({ lines: ["hi"] });
+  });
+});

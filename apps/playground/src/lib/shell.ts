@@ -5,7 +5,9 @@ export type ShellEffect =
   | { kind: "navigate"; href: string }
   | { kind: "accent"; name: string }
   | { kind: "sound"; on: boolean }
-  | { kind: "clear" };
+  | { kind: "clear" }
+  | { kind: "guestbook-read" }
+  | { kind: "guestbook-sign"; message: string };
 
 export interface ShellResult {
   lines: string[];
@@ -40,8 +42,13 @@ const HELP = [
   "  fortune          a line of wisdom, or something like it",
   "  accent <name>    repaint the place",
   "  sound on|off     the clicky bits",
+  '  echo "hi" >> guestbook   sign the guestbook',
+  "  cat guestbook    read it",
   "  date, echo, clear",
 ];
+
+// echo "message" >> guestbook (quotes optional)
+const GUESTBOOK_SIGN = /^echo\s+(["']?)(.+)\1\s*>>\s*guestbook$/;
 
 /** `writing/til`, `til`, `/writing/til` or `writing` → a booth's href. */
 export const resolveBooth = (target: string): string | undefined => {
@@ -73,6 +80,14 @@ export const complete = (input: string): string => {
 
 /** Runs one line typed at the home page prompt. */
 export const runCommand = (input: string, ctx: ShellContext): ShellResult => {
+  const sign = GUESTBOOK_SIGN.exec(input.trim());
+  if (sign) {
+    return {
+      lines: [],
+      effect: { kind: "guestbook-sign", message: sign[2].trim() },
+    };
+  }
+
   const [command = "", ...args] = input.trim().split(/\s+/);
   const arg = args.join(" ");
 
@@ -151,6 +166,9 @@ export const runCommand = (input: string, ctx: ShellContext): ShellResult => {
     case "rm":
       return { lines: ["rm: nice try."] };
     case "cat":
+      if (arg === "guestbook") {
+        return { lines: [], effect: { kind: "guestbook-read" } };
+      }
       return arg === "now.md"
         ? { lines: [], effect: { kind: "navigate", href: "/now" } }
         : { lines: [`cat: ${arg || "what"}: try cd-ing to a booth instead`] };
