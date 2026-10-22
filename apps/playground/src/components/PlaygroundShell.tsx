@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { ACCENT_OPTIONS } from "@/components/AccentPicker";
+import { readGuestbook, signGuestbook } from "@/lib/guestbook";
 import { complete, runCommand } from "@/lib/shell";
 import { playTick } from "@/lib/sound";
 import { useUiStore } from "@/stores/ui";
@@ -58,6 +59,38 @@ export const PlaygroundShell = () => {
     ]);
 
     if (effect?.kind === "navigate") router.push(effect.href);
+    if (effect?.kind === "guestbook-read") {
+      readGuestbook()
+        .then((entries) =>
+          print(
+            entries.length === 0
+              ? [
+                  { text: "the guestbook is empty. be the first:" },
+                  { text: 'echo "hello" >> guestbook' },
+                ]
+              : entries
+                  .slice(0, 10)
+                  .reverse()
+                  .map((entry) => ({
+                    text: `${entry.createdAt.slice(0, 10)}  ${entry.name}: ${entry.message}`,
+                  })),
+          ),
+        )
+        .catch(() =>
+          print([
+            { text: "cat: guestbook: couldn't reach it, try again later" },
+          ]),
+        );
+    }
+    if (effect?.kind === "guestbook-sign") {
+      signGuestbook(effect.message)
+        .then(() =>
+          print([{ text: "signed. thanks for stopping by. (cat guestbook)" }]),
+        )
+        .catch((error: Error) =>
+          print([{ text: `guestbook: ${error.message}` }]),
+        );
+    }
     if (effect?.kind === "accent") {
       const option = ACCENT_OPTIONS.find((o) => o.name === effect.name);
       if (option) useUiStore.getState().setAccent(option.value);

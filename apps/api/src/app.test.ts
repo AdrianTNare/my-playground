@@ -3,7 +3,11 @@ import { test } from "node:test";
 
 process.env.NODE_ENV = "test";
 const { createApp } = await import("./app");
-const app = createApp();
+const app = createApp({
+  getDb: () => {
+    throw new Error("no database in these tests");
+  },
+});
 
 test("GET /health answers ok", async () => {
   const res = await app.request("/health");
