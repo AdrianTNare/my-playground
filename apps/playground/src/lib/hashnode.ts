@@ -9,6 +9,9 @@ const WORDS_PER_MINUTE = 200;
 export const BLOG_REVALIDATE_SECONDS = 3600;
 
 const parser = new XMLParser({
+  // The cover image lives in <enclosure url="…">.
+  ignoreAttributes: false,
+  attributeNamePrefix: "",
   // Keep every value a string: a tag like "2024" must not become a number.
   parseTagValue: false,
   isArray: (name) => name === "item" || name === "category",
@@ -20,6 +23,7 @@ interface FeedItem {
   link: string;
   pubDate: string;
   category?: string[];
+  enclosure?: { url?: string; type?: string };
   "content:encoded"?: string;
 }
 
@@ -42,6 +46,9 @@ export const parseFeed = (xml: string): BlogPost[] => {
       brief: item.description,
       url: item.link,
       date: new Date(item.pubDate).toISOString().slice(0, 10),
+      coverImage: item.enclosure?.type?.startsWith("image/")
+        ? item.enclosure.url
+        : undefined,
       readTimeMinutes: readTime(item["content:encoded"] ?? item.description),
       tags: item.category ?? [],
     }),

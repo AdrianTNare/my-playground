@@ -28,6 +28,13 @@ describe("parseFeed", () => {
     });
   });
 
+  it("reads the cover image from the enclosure, and leaves it out when there is none", () => {
+    expect(posts[0].coverImage).toMatch(
+      /^https:\/\/cdn\.hashnode\.com\/res\/hashnode\/image\/.+\.jpeg$/,
+    );
+    expect(posts[1].coverImage).toBeUndefined();
+  });
+
   it("estimates read time from the full post text", () => {
     for (const post of posts)
       expect(post.readTimeMinutes).toBeGreaterThanOrEqual(1);
