@@ -13,6 +13,7 @@ export const projects: Project[] = ProjectSchema.array().parse([
       { kind: "live", href: "https://adriannare.netlify.app/" },
     ],
     preview: "/projects/my-playground.webp",
+    cast: "/casts/my-playground-api.cast",
   },
   {
     slug: "forum-frontend",

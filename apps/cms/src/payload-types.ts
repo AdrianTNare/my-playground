@@ -314,6 +314,10 @@ export interface Project {
    */
   preview?: string | null;
   /**
+   * asciinema .cast URL, played on the project page
+   */
+  cast?: string | null;
+  /**
    * The URL segment, e.g. hashnode-rss-feed
    */
   slug: string;
@@ -579,6 +583,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   preview?: T;
+  cast?: T;
   slug?: T;
   tags?: T;
   order?: T;

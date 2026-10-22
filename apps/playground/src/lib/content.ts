@@ -85,6 +85,7 @@ const CmsProject = z
       .nullish()
       .transform((links) => links ?? []),
     preview: optional(z.string()),
+    cast: optional(z.string()),
   })
   .transform((value) => ProjectSchema.parse(value));
 

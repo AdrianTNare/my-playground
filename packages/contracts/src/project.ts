@@ -15,5 +15,7 @@ export const ProjectSchema = z.object({
   links: z.array(ProjectLinkSchema),
   /** Path or URL of a screenshot; absent until one exists. */
   preview: z.string().optional(),
+  /** Path or URL of an asciinema cast (.cast) recorded from the project. */
+  cast: z.string().optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;

@@ -222,6 +222,29 @@ button:not(:disabled),
   }
 }
 
+/* asciinema casts on project pages, in the site palette. Doubled class:
+   the player's own stylesheet loads later and sets these on .ap-player. */
+.ap-player.asciinema-player-theme-playground {
+  --term-color-foreground: #c8baa6;
+  --term-color-background: #1e1916;
+  --term-color-0: #1e1916;
+  --term-color-1: #c0613f;
+  --term-color-2: #8a9a6d;
+  --term-color-3: #cf9b5c;
+  --term-color-4: #7d8fa3;
+  --term-color-5: #b0764f;
+  --term-color-6: #8aa39a;
+  --term-color-7: #c8baa6;
+  --term-color-8: #6e6157;
+  --term-color-9: #d99a7a;
+  --term-color-10: #a8b88a;
+  --term-color-11: #e3c48f;
+  --term-color-12: #9fb0c2;
+  --term-color-13: #c99372;
+  --term-color-14: #a9c2b8;
+  --term-color-15: #f3e9d8;
+}
+
 /* Mobile booths menu: fades and drops in when opened. The motion answers the
    visitor's tap, and is skipped for reduced motion. */
 .booths-dialog {
