@@ -1,16 +1,30 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+// Keys pressed before hydration hit no listener; wait for the tree to say
+// it's listening.
+const gotoReady = async (page: Page, path: string) => {
+  await page.goto(path);
+  await expect(page.locator('nav[data-vim-keys="on"]')).toBeAttached();
+};
 
 test.describe("vim keys on the booth tree", () => {
-  test.skip(({ isMobile }) => isMobile, "the vim-driven tree is the desktop sidebar");
+  test.skip(
+    ({ isMobile }) => isMobile,
+    "the vim-driven tree is the desktop sidebar",
+  );
 
-  test("j/k move the selection from the current booth, Enter opens it", async ({ page }) => {
-    await page.goto("/");
+  test("j/k move the selection from the current booth, Enter opens it", async ({
+    page,
+  }) => {
+    await gotoReady(page, "/");
     const tree = page.getByRole("navigation", { name: "Booths" }).first();
 
     await page.keyboard.press("j");
     await expect(tree.getByRole("link", { name: "now" })).toBeFocused();
     await page.keyboard.press("j");
-    await expect(tree.getByRole("link", { name: "unoffice-hours" })).toBeFocused();
+    await expect(
+      tree.getByRole("link", { name: "unoffice-hours" }),
+    ).toBeFocused();
     await page.keyboard.press("k");
     await expect(tree.getByRole("link", { name: "now" })).toBeFocused();
 
@@ -21,7 +35,7 @@ test.describe("vim keys on the booth tree", () => {
   test("G and gg jump to the ends, l opens, h goes to the group's first booth", async ({
     page,
   }) => {
-    await page.goto("/");
+    await gotoReady(page, "/");
     const tree = page.getByRole("navigation", { name: "Booths" }).first();
 
     await page.keyboard.press("Shift+G");
@@ -39,19 +53,28 @@ test.describe("vim keys on the booth tree", () => {
   });
 
   test("Escape releases the selection", async ({ page }) => {
-    await page.goto("/now");
+    await gotoReady(page, "/now");
     const tree = page.getByRole("navigation", { name: "Booths" }).first();
     await page.keyboard.press("j");
-    await expect(tree.getByRole("link", { name: "unoffice-hours" })).toBeFocused();
+    await expect(
+      tree.getByRole("link", { name: "unoffice-hours" }),
+    ).toBeFocused();
     await page.keyboard.press("Escape");
-    await expect(tree.getByRole("link", { name: "unoffice-hours" })).not.toBeFocused();
+    await expect(
+      tree.getByRole("link", { name: "unoffice-hours" }),
+    ).not.toBeFocused();
   });
 });
 
-test("j does nothing while the sidebar is hidden on mobile", async ({ page, isMobile }) => {
+test("j does nothing while the sidebar is hidden on mobile", async ({
+  page,
+  isMobile,
+}) => {
   test.skip(!isMobile, "mobile only");
   await page.goto("/");
   await page.keyboard.press("j");
   await expect(page).toHaveURL("/");
-  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe("BODY");
+  expect(await page.evaluate(() => document.activeElement?.tagName)).toBe(
+    "BODY",
+  );
 });
